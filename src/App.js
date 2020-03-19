@@ -16,12 +16,13 @@ class App extends React.Component {
     return <MapContainer center={center} zoom={zoom} />;
   }
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition(bing(this));
+    navigator.geolocation.getCurrentPosition(this.onSuccessPosition.bin(this));
   }
 
   onSuccessPosition(pos) {
-    
+    const crd = pos.coords;
     this.setState({ ...this.state, lat: crd.latitude, lng: crd.longitude });
   }
 }
 
+export default App;
