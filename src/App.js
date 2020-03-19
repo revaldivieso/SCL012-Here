@@ -16,7 +16,7 @@ class App extends React.Component {
     return <MapContainer center={center} zoom={zoom} />;
   }
   componentDidMount() {
-    
+    navigator.geolocation.getCurrentPosition(bing(this));
   }
 
   onSuccessPosition(pos) {
@@ -25,4 +25,3 @@ class App extends React.Component {
   }
 }
 
-export default App;
