@@ -3,7 +3,6 @@ import { Link, withRouter } from "react-router-dom";
 import firebase from "./firebase";
 
 function Register(props) {
-  
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,16 +43,24 @@ function Register(props) {
             value={password}
             onChange={event => setPassword(event.target.value)}
           />
-         
-          <button type="submit"  className="btn btn-primary btn-lg btn-block" onClick={onRegister}>
-           Create account
+
+          <button
+            type="submit"
+            className="btn btn-primary btn-lg btn-block"
+            onClick={onRegister}
+          >
+            Create account
           </button>
 
-          <button type="submit" className="btn btn-secondary btn-lg btn-block" component={Link} to="/login">
+          <button
+            type="submit"
+            className="btn btn-secondary btn-lg btn-block"
+            component={Link}
+            to="/login"
+          >
             Go back to Login
           </button>
-          </div>
-        
+        </div>
       </form>
     </Fragment>
   );
