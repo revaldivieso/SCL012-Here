@@ -1,39 +1,40 @@
 import React, { useState, Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
-import firebase from "../components/firebase";
+import firebase from "./firebase";
 
 function Register(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [quote, setQuote] = useState("");
 
   return (
     <Fragment>
       <form onSubmit={event => event.preventDefault() && false}>
-        <FormControl>
-          <InputLabel htmlFor="name">Name</InputLabel>
-          <Input
+        <div className="col-md-3">
+          <input
+            placeholder="Ingresa nombre"
+            className="form-control"
             id="name"
             name="name"
             autoComplete="off"
-            autoFocus value={name}
+            autoFocus
+            value={name}
             onChange={event => setName(event.target.value)}
           />
-        </FormControl>
-        <FormControl>
-          <InputLabel htmlFor="email">Email Address</InputLabel>
-          <Input
+
+          <input
+            placeholder="Ingresa email"
+            className="form-control"
             id="email"
             name="email"
             autoComplete="off"
             value={email}
             onChange={event => setEmail(event.target.value)}
           />
-     
-       <div>
-          <InputLabel htmlFor="password">Password</InputLabel>
-          <Input
+
+          <input
+            placeholder="Ingresa contraseña"
+            className="form-control"
             name="password"
             type="password"
             id="password"
@@ -41,25 +42,22 @@ function Register(props) {
             value={password}
             onChange={event => setPassword(event.target.value)}
           />
+
+          <button type="submit" onClick={onRegister}>
+            Register
+          </button>
+
+          <button type="submit" component={Link} to="/login">
+            Go back to Login
+          </button>
         </div>
-        
-
-        <Button type="submit" onClick={onRegister}>
-          Register
-        </Button>
-
-        <Button type="submit" component={Link} to="/login">
-          Go back to Login
-        </Button>
       </form>
-      
     </Fragment>
   );
 
   async function onRegister() {
     try {
       await firebase.register(name, email, password);
-      await firebase.addQuote(quote);
       props.history.replace("/dashboard");
     } catch (error) {
       alert(error.message);
@@ -67,4 +65,4 @@ function Register(props) {
   }
 }
 
-export default withRouter(withStyles(styles)(Register));
+export default withRouter(Register);

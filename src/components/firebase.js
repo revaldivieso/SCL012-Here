@@ -12,7 +12,7 @@ const firebaseConfig = {
   appId: "1:1072229486553:web:b71b9e83995d89511e13c8",
   measurementId: "G-ETJP40QM17"
 };
-app.initializeApp(firebaseConfig);
+// app.initializeApp(firebaseConfig);
 
 class Firebase {
   constructor() {
@@ -30,14 +30,25 @@ class Firebase {
   }
 
   //Inicia sesion del usuario
-  async login(email, password) {
+  login(email, password) {
     return this.auth.signInWithEmailAndPassword(email, password);
   }
 
   //Cierra sesion del usuario
-  async logout() {
-    await this.auth.signOut();
+  logout() {
+    return this.auth.signOut();
   }
+
+  isInitialized() {
+    return new Promise(resolve => {
+      this.auth.onAuthStateChanged(resolve)
+    })
+  }
+
+  getCurrentUsername(){
+    return this.auth.currentUser && this.auth.currentUser.displayName
+  }
+  
 }
 
 export default new Firebase();
