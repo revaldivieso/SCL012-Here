@@ -3,16 +3,18 @@ import { Link, withRouter } from "react-router-dom";
 import firebase from "./firebase";
 
 function Register(props) {
+  
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   return (
     <Fragment>
-      <form onSubmit={event => event.preventDefault() && false}>
+      <h1>Register</h1>
+      <form className="row" onSubmit={event => event.preventDefault() && false}>
         <div className="col-md-3">
           <input
-            placeholder="Ingresa nombre"
+            placeholder="Enter your name"
             className="form-control"
             id="name"
             name="name"
@@ -23,7 +25,7 @@ function Register(props) {
           />
 
           <input
-            placeholder="Ingresa email"
+            placeholder="Enter your e-mail"
             className="form-control"
             id="email"
             name="email"
@@ -33,7 +35,7 @@ function Register(props) {
           />
 
           <input
-            placeholder="Ingresa contraseña"
+            placeholder="Enter password"
             className="form-control"
             name="password"
             type="password"
@@ -42,15 +44,16 @@ function Register(props) {
             value={password}
             onChange={event => setPassword(event.target.value)}
           />
-
-          <button type="submit" onClick={onRegister}>
-            Register
+         
+          <button type="submit"  className="btn btn-primary btn-lg btn-block" onClick={onRegister}>
+           Create account
           </button>
 
-          <button type="submit" component={Link} to="/login">
+          <button type="submit" className="btn btn-secondary btn-lg btn-block" component={Link} to="/login">
             Go back to Login
           </button>
-        </div>
+          </div>
+        
       </form>
     </Fragment>
   );

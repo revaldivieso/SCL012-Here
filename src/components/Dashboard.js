@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import firebase from "./firebase";
 import { withRouter } from 'react-router-dom'
 
@@ -11,15 +11,15 @@ function Dashboard(props) {
   }
 
   return (
-    <main>
+    <Fragment>
       <p>Hello {firebase.getCurrentUsername()}</p>
      
       <div>
-        <button type="submit" onClick={logout}>
+        <button type="submit" className="btn btn-danger" onClick={logout}>
           Logout
         </button>
       </div>
-    </main>
+    </Fragment>
   );
 
   async function logout() {
