@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import HomePage from "./components/HomePage";
-import Login from "./components/Login.js";
-import Register from "./components/Register.js";
+import HomePage from "./View/HomePage";
+import Login from "./components/Login";
+import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "./components/firebase";
 import Layout from "./components/Layout";
+
 // import UserAuth from './components/UserAuth.js'
 // import Apigeofencing from './components/ApiGeofencing.js'
 
@@ -23,7 +24,7 @@ function App() {
     <Router>
       <Layout>
         <Switch>
-          <Route path="/login" component={HomePage} />
+          <Route path="/home-page" component={HomePage} />
           <Route path="/register" component={Register} />
           <Route path="/dashboard" component={Dashboard} />
           <Route exact path="/" component={Login} />

@@ -1,0 +1,26 @@
+#sidebar a {
+  background: #f4decb;
+  padding: 10px 20px;
+
+  color: #18121e;
+  text-decoration: none;
+  width: 80px;
+  transition: all 0.4s ease;
+  display: flex;
+}
+
+#sidebar a:hover {
+  color: #f4decb !important;
+  background: #18121e !important;
+  padding: 10px 80px;
+  border-top-right-radius: 130px;
+  border-bottom-right-radius: 120px;
+}
+
+#sidebar a:hover > .arrow {
+  display: block;
+}
+
+.sidebar {
+  bottom: 0;
+}

@@ -1,78 +1,65 @@
-import React, { useState, Fragment } from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, { Fragment, useState } from "react";
 import firebase from "./firebase";
+import { Link, withRouter } from "react-router-dom";
+//import { Container, Row } from "react-bootstrap";
 
-function Register(props) {
-  const [name, setName] = useState("");
+const SignIn = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   return (
     <Fragment>
-      <h1>Register</h1>
-      <form className="row" onSubmit={event => event.preventDefault() && false}>
+      <h1>Iniciar sesion</h1>
+      <form className="row" onSubmit={login}>
         <div className="col-md-3">
-          <input
-            placeholder="Enter your name"
-            className="form-control"
-            id="name"
-            name="name"
-            autoComplete="off"
-            autoFocus
-            value={name}
-            onChange={event => setName(event.target.value)}
-          />
-
           <input
             placeholder="Enter your e-mail"
             className="form-control"
-            id="email"
+            type="email"
             name="email"
             autoComplete="off"
+            autoFocus
             value={email}
             onChange={event => setEmail(event.target.value)}
-          />
-
+          ></input>
           <input
-            placeholder="Enter password"
+            placeholder="Enter your password"
             className="form-control"
-            name="password"
             type="password"
-            id="password"
+            name="password"
             autoComplete="off"
             value={password}
             onChange={event => setPassword(event.target.value)}
-          />
+          ></input>
 
           <button
+            to="/home-pages"
             type="submit"
             className="btn btn-primary btn-lg btn-block"
-            onClick={onRegister}
           >
-            Create account
+            <Link to="/home-page">Enviar</Link>
           </button>
 
           <button
             type="submit"
+            to="/register"
             className="btn btn-secondary btn-lg btn-block"
-            component={Link}
-            to="/login"
           >
-            Go back to Login
+            <Link to="/register">Register</Link>
           </button>
         </div>
       </form>
     </Fragment>
   );
 
-  async function onRegister() {
+  async function login() {
     try {
-      await firebase.register(name, email, password);
+      await firebase.login(email, password);
       props.history.replace("/dashboard");
     } catch (error) {
       alert(error.message);
     }
   }
-}
+};
 
-export default withRouter(Register);
+export default withRouter(SignIn);
