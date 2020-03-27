@@ -10,11 +10,6 @@ function NavBar() {
           <i class="fas fa-user"></i>
         </Link>
       </div>
-      <div id="home">
-        <Link to="/" className="w3-bar-item w3-button">
-          <i className="fa fa-home"></i>
-        </Link>
-      </div>
       <div id="notifications">
         <Link to="/notifications" className="w3-bar-item w3-button">
           <i class="far fa-heart"></i>
