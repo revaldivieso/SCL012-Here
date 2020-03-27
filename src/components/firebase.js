@@ -41,14 +41,13 @@ class Firebase {
 
   isInitialized() {
     return new Promise(resolve => {
-      this.auth.onAuthStateChanged(resolve)
-    })
+      this.auth.onAuthStateChanged(resolve);
+    });
   }
 
-  getCurrentUsername(){
-    return this.auth.currentUser && this.auth.currentUser.displayName
+  getCurrentUsername() {
+    return this.auth.currentUser && this.auth.currentUser.displayName;
   }
-  
 }
 
 export default new Firebase();

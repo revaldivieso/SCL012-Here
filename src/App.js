@@ -6,7 +6,7 @@ import Register from "./components/Register.js";
 import Dashboard from "./components/Dashboard";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "./components/firebase";
-import Layout from "./Components/Layout";
+import Layout from "./components/Layout";
 // import UserAuth from './components/UserAuth.js'
 // import Apigeofencing from './components/ApiGeofencing.js'
 
@@ -23,10 +23,10 @@ function App() {
     <Router>
       <Layout>
         <Switch>
+          <Route path="/login" component={HomePage} />
+          <Route path="/register" component={Login} />
+          <Route path="/dashboard" component={Dashboard} />
           <Route exact path="/" component={Register} />
-          <Route exact path="/login" component={HomePage} />
-          <Route exact path="/register" component={Login} />
-          <Route exact path="/dashboard" component={Dashboard} />
         </Switch>
       </Layout>
     </Router>
