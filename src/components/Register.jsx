@@ -14,19 +14,21 @@ const STATE_INICIAL = {
 }
 
 const Register = (props) => {
-  
-  const { values, errors, handleSubmit, handleChange, handleBlur } = useValidation ( STATE_INICIAL, validateRegister, onRegister );
-
-  const { name, email, password } = values;
 
   async function onRegister() {
     try {
       await firebase.register(name, email, password);
       props.history.replace("/dashboard");
     } catch (error) {
-      alert(error.message);
+      console.error('Hubo un error al crear el usuario', error.message);
     }
   }
+  
+  const { values, errors, handleSubmit, handleChange, handleBlur } = useValidation ( STATE_INICIAL, validateRegister, onRegister );
+
+  const { name, email, password } = values;
+
+ 
 
   return (
     <Fragment>
@@ -86,7 +88,6 @@ const Register = (props) => {
           <button
             type="submit"
             className="btn btn-primary btn-lg btn-block"
-            onClick={onRegister}
           >
             Create account
           </button>
@@ -99,7 +100,6 @@ const Register = (props) => {
       </form>
     </Fragment>
   );
-
 }
 
 export default withRouter(Register);

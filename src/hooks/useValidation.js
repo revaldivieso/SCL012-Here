@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import { useState, useEffect} from 'react'
 
 const useValidation = (stateInitial, validate, fn) => {
 
@@ -15,7 +15,7 @@ const useValidation = (stateInitial, validate, fn) => {
             }
             setSubmitForm(false);
         }
-    }, [errors]);
+    }, [errors, fn, submitForm]);
 
         //funcion que se ejecuta cuando el usuario escribe algo
         const handleChange = e => {
@@ -47,7 +47,6 @@ const useValidation = (stateInitial, validate, fn) => {
         handleSubmit,
         handleChange,
         handleBlur,
-        submitForm
 
     };
 }

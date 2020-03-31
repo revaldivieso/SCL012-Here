@@ -1,11 +1,20 @@
-import React, { Fragment, useState } from "react";
-import firebase from "./firebase";
+import React, {Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
-//import { Container, Row } from "react-bootstrap";
+import firebase from "./firebase";
+
+//validaciones
+import useValidation from "../hooks/useValidation.js";
+import validateLogin from '../validate/validateLogin';
+
+const STATE_INICIAL = {
+  email: '',
+  password: ''
+}
 
 const SignIn = props => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { values, errors, handleSubmit, handleChange, handleBlur } = useValidation ( STATE_INICIAL, validateLogin, login );
+
+  const { email, password } = values;
 
    async function login() {
     try {
@@ -19,8 +28,9 @@ const SignIn = props => {
   return (
     <Fragment>
       <h1>Iniciar sesion</h1>
-      <form className="row" onSubmit={login}>
+      <form className="row" onSubmit={handleSubmit} noValidate>
         <div className="col-md-3">
+          <div>
           <input
             placeholder="Enter your e-mail"
             className="form-control"
@@ -29,8 +39,14 @@ const SignIn = props => {
             autoComplete="off"
             autoFocus
             value={email}
-            onChange={event => setEmail(event.target.value)}
+            onChange={handleChange}
+            onBlur={handleBlur}
           ></input>
+          </div>
+
+          {errors.email && <p>{errors.email}</p>}
+
+          <div>
           <input
             placeholder="Enter your password"
             className="form-control"
@@ -38,9 +54,14 @@ const SignIn = props => {
             name="password"
             autoComplete="off"
             value={password}
-            onChange={event => setPassword(event.target.value)}
+            onChange={handleChange}
+            onBlur={handleBlur}
           ></input>
+          </div>
 
+          {errors.password && <p>{errors.password}</p>}
+
+          <div>
           <button
             to="/home-pages"
             type="submit"
@@ -56,6 +77,7 @@ const SignIn = props => {
           >
             <Link to="/register">Register</Link>
           </button>
+          </div>
         </div>
       </form>
     </Fragment>
