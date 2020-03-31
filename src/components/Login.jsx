@@ -7,6 +7,15 @@ const SignIn = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+   async function login() {
+    try {
+      await firebase.login(email, password);
+      props.history.replace("/dashboard");
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
   return (
     <Fragment>
       <h1>Iniciar sesion</h1>
@@ -35,7 +44,7 @@ const SignIn = props => {
           <button
             to="/home-pages"
             type="submit"
-            className="btn btn-primary btn-lg btn-block"
+            className="btn btn-info"
           >
             <Link to="/home-page">Enviar</Link>
           </button>
@@ -43,7 +52,7 @@ const SignIn = props => {
           <button
             type="submit"
             to="/register"
-            className="btn btn-secondary btn-lg btn-block"
+            className="btn btn-secondary"
           >
             <Link to="/register">Register</Link>
           </button>
@@ -51,15 +60,6 @@ const SignIn = props => {
       </form>
     </Fragment>
   );
-
-  async function login() {
-    try {
-      await firebase.login(email, password);
-      props.history.replace("/dashboard");
-    } catch (error) {
-      alert(error.message);
-    }
-  }
 };
 
 export default withRouter(SignIn);

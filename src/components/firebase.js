@@ -1,6 +1,7 @@
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/firebase-firestore";
+import { useIdTokenResult } from "reactfire";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBKe15jDJOjs162ET_Pj3FxyfVkXPC5cYk",
@@ -30,8 +31,11 @@ class Firebase {
   }
 
   //Inicia sesion del usuario
-  login(email, password) {
-    return this.auth.signInWithEmailAndPassword(email, password);
+  async login(email, password) {
+   await this.auth.signInWithEmailAndPassword(email, password);
+   return this.auth.currentUser.updateProfile({
+    displayName: useIdTokenResult
+  });
   }
 
   //Cierra sesion del usuario
