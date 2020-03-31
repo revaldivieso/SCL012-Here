@@ -11,14 +11,15 @@ const STATE_INICIAL = {
   password: ''
 }
 
-const SignIn = props => {
+const SignIn = (props) => {
   const { values, errors, handleSubmit, handleChange, handleBlur } = useValidation ( STATE_INICIAL, validateLogin, login );
 
   const { email, password } = values;
 
    async function login() {
     try {
-      await firebase.login(email, password);
+      const response = await firebase.login(email, password);
+      console.log(response);
       props.history.replace("/dashboard");
     } catch (error) {
       alert(error.message);
@@ -29,7 +30,7 @@ const SignIn = props => {
     <Fragment>
       <h1>Iniciar sesion</h1>
       <form className="row" onSubmit={handleSubmit} noValidate>
-        <div className="col-md-3">
+        <div className="col-md-12">
           <div>
           <input
             placeholder="Enter your e-mail"
@@ -67,7 +68,7 @@ const SignIn = props => {
             type="submit"
             className="btn btn-info"
           >
-            <Link to="/home-page">Enviar</Link>
+            Enviar
           </button>
 
           <button

@@ -34,7 +34,7 @@ const Register = (props) => {
     <Fragment>
       <h4>Registrate con redes sociales o creando una cuenta</h4>
       <form className="row" onSubmit={handleSubmit} noValidate>
-        <div className="col-md-3">
+        <div className="col-md-12">
           <div>
           <label htmlFor="nombre">Ingresa tu nombre</label>
           <input
