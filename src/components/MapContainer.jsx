@@ -1,11 +1,6 @@
 import React from "react";
 import { Map, TileLayer, Marker } from "react-leaflet";
 
-const hereCredentials = {
-  id: "4urefBTdX83MUJzvP0jV",
-  code: "YatXWn5RsvdkGIog8fwYN5DEC_DTzFVTt518X6YJ5sI"
-};
-
 class MapContainer extends React.Component {
   constructor(props) {
     super(props);
