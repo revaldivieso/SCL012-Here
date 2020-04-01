@@ -12,19 +12,24 @@ const STATE_INICIAL = {
 }
 
 const SignIn = (props) => {
-  const { values, errors, handleSubmit, handleChange, handleBlur } = useValidation ( STATE_INICIAL, validateLogin, login );
 
-  const { email, password } = values;
-
-   async function login() {
+  async function login() {
     try {
-      const response = await firebase.login(email, password);
-      console.log(response);
+      await firebase.login(email, password);
+      if(!(await firebase.hashTable(firebase.auth.currentUser.uid))){
+        await firebase.createUserTable()
+      }
       props.history.replace("/dashboard");
     } catch (error) {
       alert(error.message);
     }
   }
+
+  const { values, errors, handleSubmit, handleChange, handleBlur } = useValidation ( STATE_INICIAL, validateLogin, login );
+
+  const { email, password } = values;
+
+   
 
   return (
     <Fragment>

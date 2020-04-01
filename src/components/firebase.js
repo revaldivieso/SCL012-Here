@@ -1,5 +1,6 @@
 import app from "firebase/app";
 import "firebase/auth";
+import "firebase/database";
 import "firebase/firebase-firestore";
 import { useIdTokenResult } from "reactfire";
 
@@ -20,6 +21,23 @@ class Firebase {
     app.initializeApp(firebaseConfig);
     this.auth = app.auth();
     this.database = app.firestore();
+    this.db = app.database();
+  }
+
+  async createUserTable (){
+    await this.database.doc('users/' + this.auth.currentUser.uid).set({
+      users:[],
+    })
+  }
+
+  async getUsers (){
+    return await this.database.ref('users-' + this.auth.currentUser.uid);
+  }
+
+  //para traer la capeta del nombre users y adentro de esa carpeta traeme un documento que coincida con el userId y luego extraemos el exist para ver si esta creado (si existe)
+  async hashTable (userId){
+   const {exists} = await this.database.collection('users').doc(userId).get();
+   return exists;
   }
 
   //Registra un usuario
