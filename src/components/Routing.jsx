@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import _ from "lodash";
 
 class Routing extends Component {
   handleChangeStarting = e => {
@@ -8,7 +9,6 @@ class Routing extends Component {
 
   handleChangeEnding = e => {
     const point1 = e.target.value;
-    console.log("En el handle", point1);
     this.props.setEndingPoint(point1);
   };
 
@@ -17,13 +17,31 @@ class Routing extends Component {
       <div>
         <input
           key="inputStarting"
-          onChange={e => this.handleChangeStarting(e)}
+          onChange={evt => {
+            evt.persist();
+            if (!this.debouncedFnStart) {
+              this.debouncedFnStart = _.debounce(() => {
+                this.handleChangeStarting(evt);
+                this.debouncedFnStart = null;
+              }, 1000);
+            }
+            this.debouncedFnStart();
+          }}
           type="text"
           placeholder="¿Dónde estás?"
         />
         <input
           key="inputEnding"
-          onChange={e => this.handleChangeEnding(e)}
+          onChange={evt => {
+            evt.persist();
+            if (!this.debouncedFnEnd) {
+              this.debouncedFnEnd = _.debounce(() => {
+                this.handleChangeEnding(evt);
+                this.debouncedFnEnd = null;
+              }, 1000);
+            }
+            this.debouncedFnEnd();
+          }}
           type="text"
           placeholder="¿A dónde quieres ir?"
         />
