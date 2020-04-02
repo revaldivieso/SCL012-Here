@@ -148,7 +148,6 @@ class AppMap extends React.Component {
   }
 
   onMap(ref) {
-    debugger;
     if (ref) {
       this.map = ref.leafletElement;
     }
