@@ -1,9 +1,8 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import firebase from "./firebase";
 import "./Login.css";
 import logo from "../img/logo.png";
 import { Link, withRouter } from "react-router-dom";
-import firebase from "./firebase";
 
 //validaciones
 import useValidation from "../hooks/useValidation.js";
@@ -39,7 +38,7 @@ const SignIn = props => {
 
   return (
     <Fragment>
-      <div class="first_view">
+      <div className="first_view">
         <header className="app_header">
           <img src={logo} className="huellas_logo" alt="logo" />
         </header>
@@ -50,7 +49,6 @@ const SignIn = props => {
         </h5>
 
         <form className="row" onSubmit={handleSubmit} noValidate>
-          <h5>Ingresa tu correo electrónico*</h5>
           <input
             class="email"
             placeholder="Ingresa Email"
@@ -81,26 +79,26 @@ const SignIn = props => {
 
           {/* BOTON DE INGRESO CON FACEBOOK*/}
 
-          <button class="login_facebook" to="/home-pages" type="submit">
+          <button className="login_facebook" to="/home-pages" type="submit">
             <Link to="/home-page">Ingresa con Facebook</Link>
           </button>
 
           {/* BOTON DE INGRESO CON GOOGLE*/}
 
-          <button class="login_google" to="/home-pages" type="submit">
+          <button className="login_google" to="/home-pages" type="submit">
             <Link to="/home-page">Ingresa con Google</Link>
           </button>
 
           {/* BOTON DE INGRESO- LOGIN*/}
 
-          <button class="login" to="/home-pages" type="submit">
+          <button className="login" to="/home-pages" type="submit">
             <Link to="/home-page">Ingresar</Link>
           </button>
 
           {/* BOTON DE REGISTRO*/}
           <h6>
             Si no estas registrado ingresa{" "}
-            <button class="register" type="submit" to="/register">
+            <button className="register" type="submit" to="/register">
               <Link to="/register">aquí</Link>
             </button>{" "}
           </h6>
