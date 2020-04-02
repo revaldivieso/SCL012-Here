@@ -1,0 +1,38 @@
+.register_google,
+.register_facebook {
+    width: 17.625rem;
+    height: 2.0625rem;
+    color: white;
+    border-radius: 10px;
+    border-color: none;
+    margin-left: 14%;
+    font-size: 13px;
+    margin-top: 2%;
+    border: none;
+}
+
+.register_google {
+    background: #DC4E41;
+}
+
+.register_facebook {
+    background: #3F65A6;
+}
+
+.login {
+    background: #4ABDAC;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    margin-top: 7%;
+    margin-left: 33%;
+    font-size: 13px;
+    width: 30%;
+    height: 2.5rem;
+}
+
+.return_login {
+    border: none;
+    font-style: initial;
+    font-weight: bold;
+}

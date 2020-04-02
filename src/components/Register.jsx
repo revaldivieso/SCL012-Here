@@ -1,6 +1,8 @@
 import React, { useState, Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import firebase from "./firebase";
+import logo from '../img/logo.png';
+import "./Register.css";
 
 function Register(props) {
   const [name, setName] = useState("");
@@ -9,22 +11,17 @@ function Register(props) {
 
   return (
     <Fragment>
-      <h1>Register</h1>
-      <form className="row" onSubmit={event => event.preventDefault() && false}>
-        <div className="col-md-3">
-          <input
-            placeholder="Enter your name"
-            className="form-control"
-            id="name"
-            name="name"
-            autoComplete="off"
-            autoFocus
-            value={name}
-            onChange={event => setName(event.target.value)}
-          />
+      <div class="second_view">
+      <header className="app_header">
+      <img src={logo} className="huellas_logo" alt="logo" />
+      </header>
 
+      <h5>Registrate con redes sociales o creando una cuenta </h5>
+
+      <form className="row" onSubmit={event => event.preventDefault() && false}>
+       <h5>Ingresa tu correo electrónico*</h5>
           <input
-            placeholder="Enter your e-mail"
+            placeholder="Ingresa Email"
             className="form-control"
             id="email"
             name="email"
@@ -32,9 +29,9 @@ function Register(props) {
             value={email}
             onChange={event => setEmail(event.target.value)}
           />
-
+       <h5>Ingresa tu email*</h5>
           <input
-            placeholder="Enter password"
+            placeholder="Ingresa Contraseña"
             className="form-control"
             name="password"
             type="password"
@@ -44,19 +41,42 @@ function Register(props) {
             onChange={event => setPassword(event.target.value)}
           />
 
-          <button
+{/* BOTON DE INGRESO CON FACEBOOK*/}
+
+          <button class="register_facebook"
+            to="/home-pages"
             type="submit"
-            className="btn btn-primary btn-lg btn-block"
-            onClick={onRegister}
           >
-            Create account
+            <Link to="/home-page">Ingresa con Facebook</Link>
           </button>
 
-          <button type="submit" className="btn btn-secondary btn-lg btn-block">
-            <Link to="/">Go back to Login </Link>
+{/* BOTON DE INGRESO CON GOOGLE*/}
+
+          <button class="register_google"
+            to="/home-pages"
+            type="submit"
+          >
+            <Link to="/home-page">Ingresa con Google</Link>
           </button>
-        </div>
+
+{/* BOTON DE registro*/}
+
+          <button class="login"
+            type="submit"
+            onClick={onRegister}
+          >
+            Registrar
+          </button>
+
+{/* BOTON DE VOLVER A LOGIN*/}
+
+          <h6>Si ya estas registrado ingresa <button class="return_login"
+            type="submit" >
+            <Link to="/">aquí</Link>
+          </button>
+          </h6>
       </form>
+      </div>
     </Fragment>
   );
 
