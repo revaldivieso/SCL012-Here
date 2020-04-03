@@ -24,13 +24,8 @@ const Register = props => {
     }
   }
 
-  const {
-    values,
-    errors,
-    handleSubmit,
-    handleChange,
-    handleBlur
-  } = useValidation(STATE_INICIAL, validateRegister, onRegister);
+
+  const {values, errors, handleSubmit, handleChange, handleBlur } = useValidation(STATE_INICIAL, validateRegister, onRegister);
 
   const { name, email, password } = values;
 

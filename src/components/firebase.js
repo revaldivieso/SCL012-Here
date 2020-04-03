@@ -14,7 +14,6 @@ const firebaseConfig = {
   appId: "1:1072229486553:web:b71b9e83995d89511e13c8",
   measurementId: "G-ETJP40QM17"
 };
-// app.initializeApp(firebaseConfig);
 
 class Firebase {
   constructor() {
@@ -31,7 +30,7 @@ class Firebase {
   }
 
   async getUsers (){
-    return await this.database.ref('users-' + this.auth.currentUser.uid);
+    return await this.database.ref('/users-' + this.auth.currentUser.uid);
   }
 
   //para traer la capeta del nombre users y adentro de esa carpeta traeme un documento que coincida con el userId y luego extraemos el exist para ver si esta creado (si existe)
@@ -40,13 +39,32 @@ class Firebase {
    return exists;
   }
 
-  //Registra un usuario
+  // - Registra un usuario 
   async register(name, email, password) {
     await this.auth.createUserWithEmailAndPassword(email, password);
+    console.log(this.db);
+    const user = this.auth.currentUser;
+    await this.db.ref('users/' + 1).set({
+      name: name,
+      email: email,
+      password: password,
+      UID: user.uid
+    })
     return this.auth.currentUser.updateProfile({
       displayName: name
     });
   }
+
+
+  // // -Registra a un usuario con Google
+
+  //  registerWithGoogle(){
+  //   let provider = new this.firebase.auth.GoogleAuthProvider();
+  //   return this.auth.signInWithPopup(provider).then((result) =>{
+  //         console.log(result);
+  //       })      
+  //   }
+
 
   //Inicia sesion del usuario
   async login(email, password) {
@@ -56,7 +74,7 @@ class Firebase {
   });
   }
 
-  //Cierra sesion del usuario
+  // Cierra sesion del usuario
   logout() {
     return this.auth.signOut();
   }
