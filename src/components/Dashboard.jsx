@@ -2,6 +2,9 @@ import React, { Fragment } from 'react'
 import firebase from "./firebase";
 import { withRouter } from 'react-router-dom';
 import AppMap from "../components/AppMap";
+// import AddFamily from "./AddFamily";
+
+
 
 
 
@@ -16,11 +19,11 @@ function Dashboard(props) {
   return (
     <Fragment>
       <p>Hello {firebase.getCurrentUsername()}</p>
-     
       <div>
         <button type="submit" className="btn btn-danger" onClick={logout}>
           Logout
         </button>
+      {/* <AddFamily/> */}
       </div>
       <AppMap/>
       {/* <div id="map"></div> */}

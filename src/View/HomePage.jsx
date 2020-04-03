@@ -15,7 +15,7 @@ function HomePage() {
         </div>
       </header>
       <body>
-        <AppMap />
+        <AppMap/>
       </body>
       <footer>
         <NavBar />

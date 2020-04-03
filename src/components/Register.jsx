@@ -23,6 +23,7 @@ const Register = (props) => {
       console.error('Hubo un error al crear el usuario', error.message);
     }
   }
+
   
   const { values, errors, handleSubmit, handleChange, handleBlur } = useValidation ( STATE_INICIAL, validateRegister, onRegister );
 

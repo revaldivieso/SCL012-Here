@@ -6,7 +6,7 @@ body {
   text-align: center;
 }
 
-#loader {
+/* #loader {
   position: fixed;
   top: 0;
   left: 0;
@@ -15,7 +15,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 #map {
   height: 400px;
